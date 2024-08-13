@@ -8,13 +8,13 @@ export default function MovieCard() {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef(null);
 
-  {/* 
+
   useEffect(() => {            // api call from rapidapi
     const options = {
       method: 'GET',
       url: 'https://imdb188.p.rapidapi.com/api/v1/getWeekTop10',
   headers: {
-    'x-rapidapi-key':import.meta.env.VITE_RAPIDAPI_KEY,
+    'x-rapidapi-key': '08e0d4e2damshd83dab6fb46260cp162640jsnf1e690b6a871',
     'x-rapidapi-host': 'imdb188.p.rapidapi.com'
       }
     };
@@ -32,7 +32,7 @@ export default function MovieCard() {
         console.error(error);
       });
   }, []); 
-   */}
+  
 
   const scrollLeft = () => {
     sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });

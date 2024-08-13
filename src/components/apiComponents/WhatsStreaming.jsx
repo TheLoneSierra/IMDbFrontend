@@ -8,14 +8,14 @@ export default function WhatsStreaming() {
   const [streaming, setStreaming] = useState([]);
   const sliderRef = useRef(null);
 
-  {/*  
+  
   useEffect(() => {                //api call from rapidapi
     const options = {
       method: 'GET',
       url: 'https://imdb188.p.rapidapi.com/api/v1/getWhatsStreaming',
   params: {country: 'US'},
   headers: {
-    'x-rapidapi-key':import.meta.env.VITE_RAPIDAPI_KEY,
+    'x-rapidapi-key': '08e0d4e2damshd83dab6fb46260cp162640jsnf1e690b6a871',
     'x-rapidapi-host': 'imdb188.p.rapidapi.com'
   }
     };
@@ -35,7 +35,7 @@ export default function WhatsStreaming() {
         console.error(error);
       }); 
   }, []); 
- */}
+
 
   const scrollLeft = () => {
     sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });
