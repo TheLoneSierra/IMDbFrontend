@@ -8,7 +8,7 @@ export default function MovieCard() {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef(null);
 
-{/* 
+
   useEffect(() => {            // api call from rapidapi
     const options = {
       method: 'GET',
@@ -32,7 +32,7 @@ export default function MovieCard() {
         console.error(error);
       });
   }, []); 
-  */}
+
 
   const scrollLeft = () => {
     sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });
