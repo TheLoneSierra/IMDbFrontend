@@ -8,7 +8,7 @@ export default function WhatsStreaming() {
   const [streaming, setStreaming] = useState([]);
   const sliderRef = useRef(null);
 
-  
+  {/* 
   useEffect(() => {                //api call from rapidapi
     const options = {
       method: 'GET',
@@ -35,7 +35,7 @@ export default function WhatsStreaming() {
         console.error(error);
       }); 
   }, []); 
-
+*/}
 
   const scrollLeft = () => {
     sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });

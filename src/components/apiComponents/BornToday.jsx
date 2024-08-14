@@ -5,7 +5,7 @@ export default function BornToday() {
   const [celebrities, setCelebrities] = useState([]);
   const sliderRef = useRef(null);
 
-
+{/* 
   useEffect(() => {     //api rendering
     const options = {
       method: 'GET',
@@ -29,7 +29,7 @@ export default function BornToday() {
         console.error(error);
       });
   }, []);
-
+*/}
   const scrollLeft = () => {
     sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });
   };
