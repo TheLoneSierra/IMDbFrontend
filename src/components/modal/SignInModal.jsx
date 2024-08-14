@@ -61,7 +61,7 @@ const SignInModal = ({ isOpen, onClose }) => {
           <p className=' text-gray-600 text-xs font-thin mt-6'>By signing in, you agree to IMDb's Conditions of Use and Privacy Policy.</p>
         </div>
         </div>
-        <div className='w-[60%] ml-24'>
+        <div className='w-[60%] ml-24 text-black'>
 <p className=' text-xl font-bold mb-4'>Benefits of your free IMDb account</p>
 <p className='text-lg font-semibold mb-0 pb-0'>Personalized Recommendations</p>
 <p className='text-sm font-normal mt-0 pt-0'>Discover shows you'll love.</p>

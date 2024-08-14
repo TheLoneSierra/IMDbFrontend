@@ -42,7 +42,7 @@ export default function BornToday() {
     <div className="bg-black py-8 relative">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-white text-2xl font-bold mb-4">Born today</h2>
-        <p className="text-gray-400 mb-6">People born on August 9</p>
+        <p className="text-gray-400 mb-6">People born on August 15</p>
         <div className="flex overflow-x-scroll space-x-4" ref={sliderRef}>
           {celebrities.map((celebrity, index) => (
             <div key={index} className="flex-shrink-0 w-36">

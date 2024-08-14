@@ -47,7 +47,7 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <img className="h-10 w-16 mb-6" src='../src/assets/IMDbLogo.png' alt="IMDb Logo" />
+      <img className="h-10 w-16 mb-6" src='https://th.bing.com/th/id/OIP.ltajFjUQtHvaTQFrRl-zgAAAAA?rs=1&pid=ImgDetMain' alt="IMDb Logo" />
       <div className="bg-white p-8 rounded-lg border border-gray-400 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Create Account</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
