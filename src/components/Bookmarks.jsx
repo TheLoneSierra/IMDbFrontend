@@ -1,22 +1,48 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { TiStarFullOutline } from "react-icons/ti";
-import { FaPlay, FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa6";
 import { WatchlistContext } from './WatchlistContext';
 
 export default function BookmarkedMovies() {
   const { watchlist } = useContext(WatchlistContext);  //props to this child component
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex < watchlist.length - 6 ? prevIndex + 1 : prevIndex
-    );
-  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 3,
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : prevIndex
-    );
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+
   };
 
   return (
@@ -24,20 +50,8 @@ export default function BookmarkedMovies() {
       <p className='text-yellow-400 text-4xl mt-6 mb-1 font-bold p-4 mx-20'>Your Watchlist</p>
 
       <div className="relative flex items-center mx-20">
-        <FaChevronLeft
-          className={`text-white text-2xl absolute left-0 z-10 cursor-pointer ${currentIndex === 0 ? "hidden" : "block"
-            }`}
-          onClick={prevSlide}
-        />
-
         <div className="overflow-hidden w-full">
-          <div
-            className="flex"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / 6)}%)`,
-              transition: "transform 0.3s ease-in-out",
-            }}
-          >
+          <Slider {...settings} className=" mx-6">
             {watchlist.length > 0 ? (
               watchlist.map((movie, index) => (
                 <div key={index} className="min-w-[14.66%] px-2">
@@ -72,17 +86,12 @@ export default function BookmarkedMovies() {
                   </div>
                 </div>
               ))
+
             ) : (
               <p className="text-white text-xl mx-20">No movies or TV shows in your watchlist.</p>
             )}
-          </div>
+          </Slider>
         </div>
-
-        <FaChevronRight
-          className={`text-white text-2xl absolute right-0 z-10 cursor-pointer ${currentIndex === watchlist.length - 6 ? "hidden" : "block"
-            }`}
-          onClick={nextSlide}
-        />
       </div>
     </div>
   );

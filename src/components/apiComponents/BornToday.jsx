@@ -1,72 +1,108 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import { FaChevronRight} from "react-icons/fa";
+import { PulseLoader } from 'react-spinners';
+
 
 export default function BornToday() {
   const [celebrities, setCelebrities] = useState([]);
-  const sliderRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
 
 
-  useEffect(() => {     //api rendering
-    const options = {
-      method: 'GET',
-      url: 'https://imdb188.p.rapidapi.com/api/v1/getBornOn',
-      params: { month: '01', day: '01' },
-      headers: {
-        'x-rapidapi-key': '08e0d4e2damshd83dab6fb46260cp162640jsnf1e690b6a871',
-        'x-rapidapi-host': 'imdb188.p.rapidapi.com'
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000)); //simulating a delay of 1 second
+        const response = await axios.get('https://imdbbackend.vercel.app/api/born-today');
+        setCelebrities(response.data);
+      } catch (error) {
+        console.log('Error while fetching the data', error);
+      } finally {
+        setIsLoading(false);
       }
     };
-
-    axios.request(options)
-      .then(response => {
-        const fetchedCelebrities = response.data.data.list.map(celebrity => ({
-          name: celebrity.nameText.text,
-          image: celebrity.primaryImage.imageUrl,
-        }));
-        setCelebrities(fetchedCelebrities);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    
+    fetchData();
   }, []);
-  
-  const scrollLeft = () => {
-    sliderRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-  };
 
-  const scrollRight = () => {
-    sliderRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 3,
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+
   };
 
   return (
-    <div className="bg-black py-8 relative">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-white text-2xl font-bold mb-4">Born today</h2>
-        <p className="text-gray-400 mb-6">People born on August 15</p>
-        <div className="flex overflow-x-scroll space-x-4" ref={sliderRef}>
-          {celebrities.map((celebrity, index) => (
-            <div key={index} className="flex-shrink-0 w-36">
+    <div className="w-full max-w-7xl px-4 mx-20">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-white flex items-center text-2xl mt-8 mb-1 font-bold ">
+          <span className="text-yellow-500  mr-2">|</span> Born today
+          <FaChevronRight className="text-white text-xl mx-3 cursor-pointer" />
+
+        </h2>
+      </div>
+      {isLoading ? (
+        <div className="flex justify-center items-center">
+          <PulseLoader color={"#ffffff"} loading={isLoading} size={10} />
+        </div>
+      ) : (
+      <Slider {...settings}>
+        {celebrities.map((celebrity, index) => (
+          <div
+            key={index}
+            className="w-1/6 px-2 my-5 flex flex-col items-center"
+          >
+            <div className=" w-48 h-48 mb-2">
               <img
                 src={celebrity.image}
-                className="w-36 h-36 rounded-full object-cover"
+                alt={celebrity.name}
+                className="rounded-full w-full h-full object-cover"
               />
-              <p className="text-white text-center mt-2">{celebrity.name}</p>
             </div>
-          ))}
-        </div>
-        <button
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-          onClick={scrollLeft}
-        >
-          {"<"}
-        </button>
-        <button
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-          onClick={scrollRight}
-        >
-          {">"}
-        </button>
-      </div>
+            <h3 className="text-white text-center text-base">
+              {celebrity.name}
+            </h3>
+            <p className="text-gray-400 text-center text-sm">
+              {celebrity.age}
+            </p>
+          </div>
+        ))}
+      </Slider>
+      )}
     </div>
-  );
+  )
 }

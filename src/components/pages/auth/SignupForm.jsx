@@ -12,8 +12,8 @@ const SignupForm = ({ formData, handleInputChange, handleSubmit, handleNavigate 
           type="text"
           placeholder="First and last name"
           className="w-full px-2 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
-          value={formData.fullName}
-          name="fullName"
+          value={formData.name}
+          name="name"
           onChange={handleInputChange}
         />
       </div>
@@ -31,7 +31,7 @@ const SignupForm = ({ formData, handleInputChange, handleSubmit, handleNavigate 
         <label className="block text-black mb-2">Password</label>
         <input
           type="password"
-          placeholder="at least 8 characters"
+          placeholder="at least 4 characters"
           className="w-full px-2 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
           value={formData.password}
           name="password"

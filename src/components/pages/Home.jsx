@@ -11,22 +11,31 @@ import Watchlist from '../Watchlist'
 import TopPicks from "../TopPicks";
 import FanFavorites from "../FanFavorites";
 import WhatsStreaming from "../apiComponents/WhatsStreaming";
+import PopularInterests from '../apiComponents/Genres';
+import { AuthProvider } from "../AuthContext";
+import FeaturedToday from "../apiComponents/FeaturedToday";
+import News from "../News";
 export default function Home() {
 
   return (
     <>
+
       <Navbar />
       <StaticImageSlider />
+      <FeaturedToday/>
       <PopularCelebrities />
-      <WeeklyTop10 />
-      <Theater />
-      <WhatsStreaming />
+      <AuthProvider> <WeeklyTop10 /></AuthProvider>
+      <AuthProvider> <Theater /></AuthProvider>
+      <AuthProvider><WhatsStreaming /></AuthProvider>
       <TopBoxOffice />
       <Watchlist />
-      <TopPicks />
+      <AuthProvider> <TopPicks /></AuthProvider>
+      <News/>
       <BornToday />
-      <FanFavorites />
+      <AuthProvider><FanFavorites /> </AuthProvider>
+      <PopularInterests />
       <Footer />
+
     </>
   )
 }

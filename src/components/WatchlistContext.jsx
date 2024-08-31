@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const WatchlistContext = createContext();  //for state management
 
-export function WatchlistProvider ({ children }) {
+export function WatchlistProvider({ children }) {
   const [watchlist, setWatchlist] = useState([]);
 
   const addToWatchlist = (movie) => {
@@ -10,7 +10,7 @@ export function WatchlistProvider ({ children }) {
     const isMovieInWatchlist = watchlist.some(
       (item) => item.title === movie.title
     );
-    
+
 
     if (!isMovieInWatchlist) {  //if movie isnt there then set that movie to the watchlist
       setWatchlist([...watchlist, movie]);

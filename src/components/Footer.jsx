@@ -22,11 +22,11 @@ export default function Footer() {
           <div className="bg-black border border-gray-900 text-white font-semibold text-xl p-4 rounded-lg flex flex-col items-center md:w-1/2 lg:w-96 h-24 md:h-auto mb-4 md:mb-0">
             <p>Follow IMDb on social</p>
             <div className="flex space-x-4 mt-3 md:space-x-6">
-              <a href="#"><FaTiktok /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaXTwitter /></a>
-              <a href="#"><FaFacebookF /></a>
-              <a href="#"><FaYoutube /></a>
+              <a href="https://in.tiktok.com/"><FaTiktok /></a>
+              <a href="https://www.instagram.com"><FaInstagram /></a>
+              <a href="https://x.com/"><FaXTwitter /></a>
+              <a href="https://www.facebook.com/"><FaFacebookF /></a>
+              <a href="https://www.youtube.com"><FaYoutube /></a>
             </div>
           </div>
           <div className="bg-black border border-gray-900 text-white font-semibold text-xl p-4 rounded-lg flex flex-col items-center md:w-1/2 lg:w-96 h-24 md:h-auto">

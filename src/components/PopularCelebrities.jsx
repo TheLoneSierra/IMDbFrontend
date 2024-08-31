@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaChevronRight } from "react-icons/fa";
 
 const celebrities = [ //sample data in form of array of objects
   {
@@ -64,74 +67,71 @@ const celebrities = [ //sample data in form of array of objects
 ];
 
 export default function PopularCelebrities() {
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex < celebrities.length - 6 ? prevIndex + 1 : prevIndex
-    );
-  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 3,
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : prevIndex
-    );
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+    
   };
 
   return (
-    <div className="w-full max-w-7xl px-4 mx-20">
+    <div className="w-full max-w-7xl mx-auto px-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-white flex items-center text-2xl mt-8 mb-1 font-bold ">
-          <span className="text-yellow-500  mr-2">|</span> Most popular Celebrities
+        <h2 className="text-white text-2xl mt-8 mb-1 font-bold flex items-center">
+          <span className="text-yellow-500 mr-2">|</span> Most Popular Celebrities
           <FaChevronRight className="text-white text-xl mx-3 cursor-pointer" />
-
         </h2>
       </div>
 
-      <div className="relative flex items-center">
-        <FaChevronLeft
-          className={`text-white text-2xl absolute left-0 z-10 cursor-pointer ${currentIndex === 0 ? "hidden" : "block"
-            }`}
-          onClick={prevSlide}
-        />
-
-        <div className="overflow-hidden w-full">
-          <div
-            className="flex"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / 6)}%)`,
-              transition: "transform 0.3s ease-in-out",
-            }}
-          >
-            {celebrities.map((celebrity, index) => (
-              <div
-                key={index}
-                className="w-1/6 px-2 my-5 flex flex-col items-center"
-              >
-                <div className=" w-48 h-48 mb-2">
-                  <img
-                    src={celebrity.imageUrl}
-                    alt={celebrity.name}
-                    className="rounded-full w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-white text-center text-base">
-                  {celebrity.name}
-                </h3>
-                <p className="text-gray-400 text-center text-sm">
-                  {celebrity.age}
-                </p>
-              </div>
-            ))}
+      <Slider {...settings}>
+        {celebrities.map((celebrity, index) => (
+          <div key={index} className="px-2">
+            <div className="w-48 h-48 mx-auto mb-2">
+              <img
+                src={celebrity.imageUrl}
+                alt={celebrity.name}
+                className="rounded-full w-full h-full object-cover"
+              />
+            </div>
+            <h3 className="text-white text-center text-base">
+              {celebrity.name}
+            </h3>
+            <p className="text-gray-400 text-center text-sm">
+              {celebrity.age}
+            </p>
           </div>
-        </div>
-
-        <FaChevronRight
-          className={`text-white text-2xl absolute right-0 z-10 cursor-pointer ${currentIndex === celebrities.length - 6 ? "hidden" : "block"
-            }`}
-          onClick={nextSlide}
-        />
-      </div>
+        ))}
+      </Slider>
     </div>
   );
-};
+  };

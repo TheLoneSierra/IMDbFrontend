@@ -15,40 +15,39 @@ export default function TopBoxOffice() {
     ];
 
     return (
-        <div className="bg-black text-white p-4 mx-20">
-            <div className="flex justify-between items-center mb-4">
-                <div className=" flex flex-col">
-                    <div className=" flex flex-row space-x-4">
-                        <h2 className=" font-semibold text-3xl">Top box office (US) </h2>
-                        <span className=" text-3xl font-semibold mt-2"><IoIosArrowForward /></span>
-
+        <div className="bg-black text-white p-4 mx-4 sm:mx-10 md:mx-20">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                <div className="flex flex-col">
+                    <div className="flex flex-row space-x-4">
+                        <h2 className="font-semibold text-2xl md:text-3xl">Top box office (US)</h2>
+                        <span className="text-2xl md:text-3xl font-semibold mt-2">
+                            <IoIosArrowForward />
+                        </span>
                     </div>
-
-                    <p className="text-lg my-3 text-gray-500">Weekend of August 2-4</p>
+                    <p className="text-base md:text-lg my-3 text-gray-500">Weekend of August 29-31</p>
                 </div>
-
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ul className="space-y-2">
-                    {movies.slice(0, 3).map((movie, index) => (    //sliced movies so that 1-3 sequence movies show in a col and other 3 ie 4-6 sequence movies in another col
+                    {movies.slice(0, 3).map((movie, index) => (
                         <li
                             key={index}
                             className="flex justify-between items-center bg-gray-950 p-3 rounded"
                         >
                             <div className="flex items-center">
-                                <span className="text-xl font-bold w-8">
-                                    {movie.rank}</span>
+                                <span className="text-lg md:text-xl font-bold w-8">{movie.rank}</span>
                                 <div className="ml-4">
-                                    <div className=" flex space-x-2 flex-row">
-                                        <button className=" mt-4 text-4xl text-blue-700"><CiBookmarkPlus /></button>
-                                        <p className="text-lg mt-3">{movie.title}</p>
+                                    <div className="flex space-x-2 flex-row">
+                                        <button className="mt-4 text-3xl md:text-4xl text-blue-700">
+                                            <CiBookmarkPlus />
+                                        </button>
+                                        <p className="text-base md:text-lg mt-3">{movie.title}</p>
                                     </div>
-                                    <p className="text-sm text-gray-400 mt-1 ml-11 ">{movie.earnings}</p>
+                                    <p className="text-sm text-gray-400 mt-1 ml-11">{movie.earnings}</p>
                                 </div>
                             </div>
                             <div className="text-blue-500 text-lg">
-                                < IoTicketSharp />
-
+                                <IoTicketSharp />
                             </div>
                         </li>
                     ))}
@@ -60,18 +59,19 @@ export default function TopBoxOffice() {
                             className="flex justify-between items-center bg-gray-950 p-3 rounded"
                         >
                             <div className="flex items-center">
-                                <span className="text-xl font-bold w-8">
-                                    {movie.rank}</span>
+                                <span className="text-lg md:text-xl font-bold w-8">{movie.rank}</span>
                                 <div className="ml-4">
-                                    <div className=" flex space-x-2 flex-row">
-                                        <button className=" mt-4 text-4xl text-blue-700"><CiBookmarkPlus /></button>
-                                        <p className="text-lg mt-3">{movie.title}</p>
+                                    <div className="flex space-x-2 flex-row">
+                                        <button className="mt-4 text-3xl md:text-4xl text-blue-700">
+                                            <CiBookmarkPlus />
+                                        </button>
+                                        <p className="text-base md:text-lg mt-3">{movie.title}</p>
                                     </div>
-                                    <p className="text-sm text-gray-400 mt-1 ml-11 ">{movie.earnings}</p>
+                                    <p className="text-sm text-gray-400 mt-1 ml-11">{movie.earnings}</p>
                                 </div>
                             </div>
                             <div className="text-blue-500 text-lg">
-                                < IoTicketSharp />
+                                <IoTicketSharp />
                             </div>
                         </li>
                     ))}
@@ -79,4 +79,5 @@ export default function TopBoxOffice() {
             </div>
         </div>
     );
+    
 };
