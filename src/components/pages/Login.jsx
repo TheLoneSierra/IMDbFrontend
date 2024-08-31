@@ -16,7 +16,7 @@ const Login = () => {
     setSuccessMessage('');
 
     try {
-      const response = await axios.post('https://imdbbackend.vercel.app/auth/login', { email, password });
+      const response = await axios.post('https://imdb-backend-two.vercel.app/auth/login', { email, password });
       const { token, name } = response.data;
 
       // Store JWT and user info in localStorage
