@@ -28,7 +28,7 @@ export default function MovieCard() {
     const fetchData = async () => {
       try {
         await new Promise(resolve => setTimeout(resolve, 1000)); //simulating a delay of 1 second
-        const response = await axios.get('https://imdbbackend.vercel.app/api/top-ten');
+        const response = await axios.get('https://imdb-backend-two.vercel.app/api/top-ten');
         setMovies(response.data);
       } catch (error) {
         console.log('Error while fetching the data', error);
