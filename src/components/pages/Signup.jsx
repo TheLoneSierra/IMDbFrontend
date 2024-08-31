@@ -19,7 +19,7 @@ const Signup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        withCredentials: true,
+        withCredentials: true // Include credentials in the request
       });
       navigate('/login');
     } catch (error) {
