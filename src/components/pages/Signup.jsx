@@ -15,11 +15,11 @@ const Signup = () => {
   const handleSubmit = async () => {
     setError(null);
     try {
-      await axios.post('https://imdb-backend-two.vercel.app/auth/signup', formData, {
+      await axios.post('https://imdbbackend.vercel.app/auth/signup', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
-        withCredentials: true // Include credentials in the request
+        withCredentials: true,
       });
       navigate('/login');
     } catch (error) {
